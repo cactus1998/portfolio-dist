@@ -1,5 +1,76 @@
-<!doctype html><html lang=""><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="icon" href="logo.png"/><title>樂咖大物輪</title><script defer="defer" src="/fishing-reel/js/chunk-vendors.dfb9d84a.js"></script><script defer="defer" src="/fishing-reel/js/app.7186740d.js"></script><link href="/fishing-reel/css/chunk-vendors.d0d6defe.css" rel="stylesheet"><link href="/fishing-reel/css/app.d41b0c47.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but 樂咖大物輪 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div></body></html><style lang="scss">body {
-    margin: 0;
-    font-family: Segoe UI;
-    height: 100%;
-  }</style>
+<!doctype html><html lang="zh-TW"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="icon" href="logo.png"/><title>樂咖大物輪</title><style>* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        margin: 0;
+        font-family: Segoe UI, sans-serif;
+        height: 100%;
+      }
+      
+      /* ✅ Loading 畫面 */
+      #app-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, #131313, #1f1f1f, #2c2c2c, #1f1f1f, #131313);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+      
+      /* 釣魚輪 Loading 動畫 */
+      .fishing-wheel {
+        width: 80px;
+        height: 80px;
+        border: 6px solid #2c2c2c;
+        border-top: 6px solid #fff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .loading-text {
+        color: #fff;
+        margin-top: 25px;
+        font-size: 22px;
+        font-weight: 600;
+        font-family: Segoe UI, sans-serif;
+        letter-spacing: 2px;
+      }
+      
+      .loading-subtitle {
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 10px;
+        font-size: 14px;
+        font-family: Segoe UI, sans-serif;
+      }
+      
+      /* 淡出動畫 */
+      .fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }</style><script defer="defer" src="/fishing-reel/js/chunk-vendors.dfb9d84a.js"></script><script defer="defer" src="/fishing-reel/js/app.ed202208.js"></script><link href="/fishing-reel/css/chunk-vendors.d0d6defe.css" rel="stylesheet"><link href="/fishing-reel/css/app.fe18bc85.css" rel="stylesheet"></head><body><noscript><strong>請啟用 JavaScript 以使用樂咖大物輪網站</strong></noscript><div id="app"></div><div id="app-loading"><div class="fishing-wheel"></div><div class="loading-text">🔥 樂咖大物輪 🔥</div><div class="loading-subtitle">載入中...</div></div><script>window.addEventListener('load', function() {
+        // 等待一小段時間確保 Vue 完全掛載
+        setTimeout(function() {
+          const loader = document.getElementById('app-loading');
+          if (loader) {
+            loader.classList.add('fade-out');
+            // 動畫結束後移除元素
+            setTimeout(function() {
+              loader.remove();
+            }, 500);
+          }
+        }, 200);
+      });</script></body></html>
