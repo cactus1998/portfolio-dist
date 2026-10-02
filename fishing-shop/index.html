@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/fishing-shop/assets/logo-D_gGb9uW.png" />
@@ -82,18 +82,17 @@
         50% { transform: translateY(-10px); }
       }
 
-      /* 隱藏主應用在載入時 */
-      #app {
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-
-      #app.loaded {
-        opacity: 1;
+      @media (prefers-reduced-motion: reduce) {
+        #app-loading,
+        .loading-logo,
+        .loading-spinner {
+          animation: none;
+          transition: none;
+        }
       }
     </style>
-    <script type="module" crossorigin src="/fishing-shop/assets/index-Cp7SeIdv.js"></script>
-    <link rel="stylesheet" crossorigin href="/fishing-shop/assets/index-DJSitWY9.css">
+    <script type="module" crossorigin src="/fishing-shop/assets/index-DolBlAqG.js"></script>
+    <link rel="stylesheet" crossorigin href="/fishing-shop/assets/index-y0hCM6A6.css">
   </head>
   <body>
     <!-- Loading 畫面 -->
@@ -108,27 +107,17 @@
       <div class="loading-spinner"></div>
     </div>
 
+    <noscript>
+      <style>#app-loading { display: none; }</style>
+      請啟用 JavaScript 以使用樂咖大物輪購物網站
+    </noscript>
+
     <!-- 主應用 -->
     <div id="app"></div>
 
     <script>
-      // 當 Vue 應用載入完成後隱藏 loading
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          const loading = document.getElementById('app-loading');
-          const app = document.getElementById('app');
-          
-          if (loading && app) {
-            loading.classList.add('hidden');
-            app.classList.add('loaded');
-            
-            // 完全移除 loading 元素
-            setTimeout(() => {
-              loading.remove();
-            }, 500);
-          }
-        }, 800); // 延遲 0.8 秒讓使用者看到 loading
-      });
+      // 保底：應用程式載入失敗時，Loading 不會永久蓋住畫面
+      setTimeout(() => document.getElementById("app-loading")?.remove(), 8000);
     </script>
   </body>
 </html>
