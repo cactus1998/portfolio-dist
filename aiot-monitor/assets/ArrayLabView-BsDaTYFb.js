@@ -5,7 +5,7 @@ const sum = values.reduce((acc, v) => acc + v, 0)
 const avg = values.length ? sum / values.length : null`,run:({latest:e})=>{let t=e.map(e=>e.spindleLoad).filter(e=>e!==null),n=t.reduce((e,t)=>e+t,0);return{count:t.length,sum:Math.round(n*10)/10,avg:t.length?Math.round(n/t.length*10)/10:null}}},{id:`groupBy`,title:`依狀態分組`,method:`Object.groupBy`,mutates:!1,note:`ES2024：回傳 { key: 元素[] }，原型為 null。總覽頁圓餅圖的資料就是這樣算出來的。`,code:`const groups = Object.groupBy(latest, (r) => r.status)
 Object.fromEntries(
   Object.entries(groups).map(([status, list]) => [status, list.map((r) => r.machineId)]),
-)`,run:({latest:e})=>{let t=Object.groupBy(e,e=>e.status);return Object.fromEntries(Object.entries(t).map(([e,t])=>[e,t.map(e=>e.machineId)]))}},{id:`reduceGroupBy`,title:`用 reduce 手寫 groupBy（常見筆試題）`,method:`reduce`,mutates:!1,note:`不支援 Object.groupBy 的環境，用 reduce 搭配物件累加器。`,code:`latest.reduce((acc, r) => {
+)`,run:({latest:e})=>{let t=Object.groupBy(e,e=>e.status);return Object.fromEntries(Object.entries(t).map(([e,t])=>[e,t.map(e=>e.machineId)]))}},{id:`reduceGroupBy`,title:`用 reduce 手寫 groupBy`,method:`reduce`,mutates:!1,note:`不支援 Object.groupBy 的環境，用 reduce 搭配物件累加器。`,code:`latest.reduce((acc, r) => {
   ;(acc[r.status] ??= []).push(r.machineId)
   return acc
 }, {})`,run:({latest:e})=>e.reduce((e,t)=>((e[t.status]??=[]).push(t.machineId),e),{})},{id:`toSorted`,title:`振動最高的三台`,method:`toSorted`,mutates:!1,note:`ES2023：排序後回傳新陣列；sort() 會改變原陣列（在 Vue 的 reactive 陣列上會觸發不必要的更新）。`,code:`latest
