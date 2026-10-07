@@ -1,0 +1,1 @@
+var e=class extends Error{code;status;constructor(e,t,n=null){super(t),this.name=`ApiRequestError`,this.code=e,this.status=n}};function t(e){return typeof e==`object`&&!!e&&e.name===`AbortError`}function n(t){return t instanceof e||t instanceof Error?t.message:`發生未知錯誤`}var r=1e4;export{t as i,r as n,n as r,e as t};
